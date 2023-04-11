@@ -54,22 +54,22 @@ db.tasks.insertMany[
     {
       "id": 1,
       "name": "Vidhya",
-      "mentee-count": 25
+      "menteeCount": 25
     },
     {
       "id": 2,
       "name": "Sangeetha Shanmugam",
-      "mentee-count": 30
+      "menteeCount": 30
     },
     {
       "id": 3,
       "name": "Naresh",
-      "mentee-count": 7
+      "menteeCount": 7
     },
     {
         "id": 4,
         "name": "Sunny",
-        "mentee-count": 10
+        "menteeCount": 10
       }
   ]
   
@@ -168,7 +168,11 @@ db.createView( "October-Month", "topics", [
 
 // 2.Find all the company drives which appeared between 15 oct-2020 and 31-oct-2020
 
-db.companies.find({ dateAppeared: { $gt: "15-10-2020",  $lt: "31-10-2020" } })
+db.companies.find({ dateAppeared: {$gt: "15-10-2020", $lt: "31-10-2020" }},
+  {
+    "_id": 0,
+    "id": 0
+  })
 
 
 // 3.Find all the company drives and students who are appeared for the placement.
@@ -212,5 +216,9 @@ db.users.find({},
 
 // 5.Find all the mentors with who has the mentee's count more than 15
 
-db.mentors.find({menteeCount: { $gt: 15 } })
+db.mentors.find({ menteeCount: {"$gt": 15} },
+  {
+    "_id": 0,
+    "id": 0,   
+  })
 
